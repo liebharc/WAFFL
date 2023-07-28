@@ -211,7 +211,10 @@ class WAFFL():
 
         """
 
-        x = librosa.resample(audio_array, fs, self.fs)
+        if fs == self.fs: 
+            x = audio_array
+        else:
+            x = librosa.resample(audio_array, fs, self.fs)
 
         predictions = self._predict(x, hop_length=hop_length, nfft=nfft, win_length=win_length)
 
